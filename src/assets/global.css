@@ -1,0 +1,21 @@
+:root{
+    --bg-global: #01092A;
+    --action-color: #00FFBA;
+}
+
+*{
+    font-family: Segoe UI;
+}
+
+ul{
+    list-style: none;
+}
+
+li{
+    display: inline
+}
+
+a{
+    text-decoration:none;
+    color: white;
+}
