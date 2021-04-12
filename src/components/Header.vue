@@ -23,31 +23,9 @@
 
 <script>
 export default{
-
-
     name: 'Header',
     data(){
         return{
-            navLinks: [
-                {
-                    text:'Info',
-                    href: '#info',
-                    id: 'info',
-                    active: false, 
-                },
-                {
-                    text: 'Projetos',
-                    href: '#projects',
-                    id: 'projects',
-                    active: false,         
-                },
-                {
-                    text: 'Contato',
-                    id: 'contact',
-                    href: '#contact',
-                    active: false,
-                }
-            ],
             underlineWidth: null,
             underlineLeft: null,
             underlineRight: null,
@@ -63,8 +41,6 @@ export default{
     methods: {
         switchActiveLink({target}){
             //underline position
-            
-
             const {width, left, right} = target.getBoundingClientRect()
             
             this.underlineWidth = width + 'px';
@@ -84,32 +60,36 @@ export default{
             if(this.language === 'pt') {
                document.getElementById('pt').classList.remove('language-selected')
                 this.language = 'en'
+                this.emitter.emit('LANGUAGE_CHANGED', 'en')
                 document.getElementById('en').classList.add('language-selected')
             } else{
                 document.getElementById('pt').classList.add('language-selected')
                 this.language = 'pt' 
+                this.emitter.emit('LANGUAGE_CHANGED', 'pt')
                 document.getElementById('en').classList.remove('language-selected')
             }
+            this.organizeUnderlinePosition()
         },
         organizeUnderlinePosition(){
             const hash = document.location.hash;
             console.log('chamado')
+            console.log(typeof this.navLinks[1].active)
             switch(hash){
                 case "#info" :
-                    this.navLinks[0].active = true;
+                    this.navLinks[0].active == true;
                     document.getElementById('info').click();
                 break;
                 case "#projects" :
-                    this.navLinks[1].active = true;
+                    this.navLinks[1].active == true;
                     //envia o click para chamar a função e posicionar o underline
                     document.getElementById('projects').click();
                 break;
                 case "#contact" :
-                    this.navLinks[2].active = true;
+                    this.navLinks[2].active == true;
                     document.getElementById('contact').click();
                 break;
                 default :
-                    this.navLinks[0].active = true;
+                    this.navLinks[0].active == true;
                     console.log('padrao')
                     document.getElementById('info').click();
             }
@@ -127,6 +107,30 @@ export default{
                 transition: 'all .5s',
                 borderRadius: '1rem'
             }   
+        },
+        navLinks(){
+            return [
+                {
+                    text: 'Info',
+                    href: '#info',
+                    id: 'info',
+                    active: false, 
+                },
+                {
+                    text: this.languageSelected === 'pt' ? 'Projetos' : 'Projects',
+                    href: '#projects',
+                    id: 'projects',
+                    active: false,         
+                },
+                {
+                    text: this.languageSelected === 'pt' ? 'Contato' : 'Contact',
+                    id: 'contact',
+                    href: '#contact',
+                    active: false,
+                }
+            ]
+                
+            
         }
     },
     mounted(){

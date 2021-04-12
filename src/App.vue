@@ -11,11 +11,17 @@ export default {
   name: 'App',
   data(){
     return{
+      language: 'pt'
     }
   },
   components: {
     Header
   },
+  mounted(){
+    this.emitter.on('LANGUAGE_CHANGED', (languageToUse) => {
+      this.language = languageToUse;
+    })
+  }
 }
 </script>
 
