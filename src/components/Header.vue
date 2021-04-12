@@ -2,8 +2,8 @@
     <header class="header">
         <nav>
             <ul>
-                <li v-for="link of navLinks" :key="link" @click="switchActiveLink">
-                    <a :class="link.active && 'active-link'" :id="link"  :href="link.href">
+                <li v-for="link of navLinks" :key="link.id" :id="link.id"  @click="switchActiveLink">
+                    <a :class="link.active && 'active-link'"  :href="link.href">
                         {{link.text}}
                     </a>
                 </li> 
@@ -28,17 +28,20 @@ export default{
                 {
                     text: 'Info',
                     href: '#info',
-                    active: true
+                    id: 'info',
+                    active: false, 
                 },
                 {
                     text: 'Projetos',
                     href: '#projects',
-                    active: false
+                    id: 'projects',
+                    active: false,         
                 },
                 {
                     text: 'Contato',
+                    id: 'contact',
                     href: '#contact',
-                    active: false
+                    active: false,
                 }
             ],
             underlineWidth: null,
@@ -48,14 +51,15 @@ export default{
     },
     methods: {
         switchActiveLink({target}){
+            //underline position
+            
+
             const {width, left, right} = target.getBoundingClientRect()
             
-            console.log(target.getBoundingClientRect())
-
             this.underlineWidth = width + 'px';
             this.underlineLeft = left + 'px';
             this.underlineRight = right + 'px';
-
+            //list item 
             this.navLinks.map(link => {
                     if(link.text === target.innerText){
                         link.active = true
@@ -78,6 +82,24 @@ export default{
                 transition: 'all .5s',
                 borderRadius: '1rem'
             }   
+        }
+    },
+    mounted(){
+       const hash = document.location.hash;
+
+        switch(hash){
+            case "" || "#info" :
+                this.navLinks[0].active = true;
+                
+            break;
+            case "#projects" :
+                this.navLinks[1].active = true;
+                document.getElementById('projects').click();
+            break;
+            case "#contact" :
+                this.navLinks[2].active = true;
+                document.getElementById('contact').click();
+            break;
         }
     }
 }
