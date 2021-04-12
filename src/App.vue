@@ -20,16 +20,20 @@ export default {
     margin: 0;
     padding: 0;
   }
-  body, html{
-    background-color: red;
+  body, html, #app{
+    background-color: var(--bg-global);
     width: 100%;
     height: 100%;
   }
 
   #app{
-    width: 100%;
-    height: 100vh;
-    background-color: var(--bg-global);
-    padding: 2rem 2rem;
+    padding: 2em;
   }
+  @media (max-width: 768px){
+      #app{
+        padding: .8em
+      }
+  }
+
+  
 </style>

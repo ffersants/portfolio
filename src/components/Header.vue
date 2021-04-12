@@ -83,6 +83,29 @@ export default{
                 this.language = 'pt' 
                 document.getElementById('en').classList.remove('language-selected')
             }
+        },
+        organizeUnderlinePosition(){
+            const hash = document.location.hash;
+            console.log('chamado')
+            switch(hash){
+                case "#info" :
+                    this.navLinks[0].active = true;
+                    document.getElementById('info').click();
+                break;
+                case "#projects" :
+                    this.navLinks[1].active = true;
+                    //envia o click para chamar a função e posicionar o underline
+                    document.getElementById('projects').click();
+                break;
+                case "#contact" :
+                    this.navLinks[2].active = true;
+                    document.getElementById('contact').click();
+                break;
+                default :
+                    this.navLinks[0].active = true;
+                    console.log('padrao')
+                    document.getElementById('info').click();
+            }
         }
     },
     computed: {
@@ -100,25 +123,8 @@ export default{
         }
     },
     mounted(){
-       const hash = document.location.hash;
-
-        switch(hash){
-            case "#info" :
-                this.navLinks[0].active = true;
-                
-            break;
-            case "#projects" :
-                this.navLinks[1].active = true;
-                //envia o click para chamar a função e posicionar o underline
-                document.getElementById('projects').click();
-            break;
-            case "#contact" :
-                this.navLinks[2].active = true;
-                document.getElementById('contact').click();
-            break;
-            default :
-                this.navLinks[0].active = true;
-        }
+        this.organizeUnderlinePosition()
+        window.addEventListener('resize', this.organizeUnderlinePosition)
     }
 }
 </script>
@@ -129,12 +135,14 @@ export default{
         padding: 0;
     }
     .header{
+        top: 0;
         display: flex;
         justify-content: space-between;
         align-items: center;
         position: sticky;
-        width: 100%;
         z-index: 10;
+       
+        font-size: .8rem;
     }
 
     .header li{
@@ -159,19 +167,49 @@ export default{
         color: var(--action-color);
     }
 
-    #language-switcher{
-        display: flex;
-    }    
-
     .languague-option{
         background-color:#3C0AA1;
         border: none;
         padding: .6em 1em;
-        font-size: 1.2em;
+        font-size: 1em;
         transition: all .3s;
+        display: inline;
+        color: white;
     }
 
     .language-selected{
         background-color:#5913FF;
     }
+
+    @media (max-width: 576px){
+        .header{
+            font-size: .9rem;
+        }
+    }
+
+     
+    @media (min-width: 576px) and (max-width: 767.98px) {
+        .header{
+            font-size: 1rem;
+        }
+    }
+
+    @media (min-width: 768px) and (max-width: 991.98px) {
+        .header{
+            font-size: 1.2rem;
+        }
+    }
+
+    @media (min-width: 992px) and (max-width: 1199.98px) {
+        .header{
+            font-size: 1.2rem;
+        }
+    }
+
+    @media (min-width: 1200px) {
+        .header{
+            font-size:1.2rem
+        }
+    }
+    
 </style>
