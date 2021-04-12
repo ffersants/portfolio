@@ -11,17 +11,11 @@ export default {
   name: 'App',
   data(){
     return{
-      language: 'en'
     }
   },
   components: {
     Header
   },
-  created(){
-    this.emitter.on('changeLanguage', (optionChoosed) => {
-      this.language = optionChoosed
-    })
-  }
 }
 </script>
 

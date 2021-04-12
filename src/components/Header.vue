@@ -36,13 +36,13 @@ export default{
                     active: false, 
                 },
                 {
-                    text: this.languageSelected === 'pt' ? 'Projetos' : 'Projects',
+                    text: 'Projetos',
                     href: '#projects',
                     id: 'projects',
                     active: false,         
                 },
                 {
-                    text: this.languageSelected === 'pt' ? 'Contato' : 'Contact',
+                    text: 'Contato',
                     id: 'contact',
                     href: '#contact',
                     active: false,
@@ -84,12 +84,10 @@ export default{
             if(this.language === 'pt') {
                document.getElementById('pt').classList.remove('language-selected')
                 this.language = 'en'
-                this.emitter.emit('changeLanguage', 'en')
                 document.getElementById('en').classList.add('language-selected')
             } else{
                 document.getElementById('pt').classList.add('language-selected')
                 this.language = 'pt' 
-                this.emitter.emit('changeLanguage', 'pt')
                 document.getElementById('en').classList.remove('language-selected')
             }
         },
