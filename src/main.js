@@ -1,6 +1,8 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-
+import mitt from 'mitt';
+const emitter = mitt();
+const app = createApp(App);
+app.config.globalProperties.emitter = emitter;
 import './assets/global.css'
-
-createApp(App).mount('#app')
+app.mount('#app');

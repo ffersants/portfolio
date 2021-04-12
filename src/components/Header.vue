@@ -22,26 +22,27 @@
 </template>
 
 <script>
-
 export default{
+
+
     name: 'Header',
     data(){
         return{
             navLinks: [
                 {
-                    text: 'Info',
+                    text:'Info',
                     href: '#info',
                     id: 'info',
                     active: false, 
                 },
                 {
-                    text: 'Projetos',
+                    text: this.languageSelected === 'pt' ? 'Projetos' : 'Projects',
                     href: '#projects',
                     id: 'projects',
                     active: false,         
                 },
                 {
-                    text: 'Contato',
+                    text: this.languageSelected === 'pt' ? 'Contato' : 'Contact',
                     id: 'contact',
                     href: '#contact',
                     active: false,
@@ -51,6 +52,12 @@ export default{
             underlineLeft: null,
             underlineRight: null,
             language: 'pt' 
+        }
+    },
+    props: {
+        languageSelected: {
+            type: String,
+            required: true
         }
     },
     methods: {
@@ -77,10 +84,12 @@ export default{
             if(this.language === 'pt') {
                document.getElementById('pt').classList.remove('language-selected')
                 this.language = 'en'
+                this.emitter.emit('changeLanguage', 'en')
                 document.getElementById('en').classList.add('language-selected')
             } else{
                 document.getElementById('pt').classList.add('language-selected')
                 this.language = 'pt' 
+                this.emitter.emit('changeLanguage', 'pt')
                 document.getElementById('en').classList.remove('language-selected')
             }
         },
