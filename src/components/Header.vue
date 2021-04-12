@@ -13,7 +13,10 @@
         </nav>
 
         <div>
-
+            <div id="language-switcher">
+                <button @click="changeLanguage" id="pt" class="languague-option language-selected">PT</button>
+                <button @click="changeLanguage" id="en" class="languague-option">EN</button>
+            </div>
         </div>
     </header>
 </template>
@@ -46,7 +49,8 @@ export default{
             ],
             underlineWidth: null,
             underlineLeft: null,
-            underlineRight: null
+            underlineRight: null,
+            language: 'pt' 
         }
     },
     methods: {
@@ -68,6 +72,17 @@ export default{
                     }
                 }
             )
+        },
+        changeLanguage(){
+            if(this.language === 'pt') {
+               document.getElementById('pt').classList.remove('language-selected')
+                this.language = 'en'
+                document.getElementById('en').classList.add('language-selected')
+            } else{
+                document.getElementById('pt').classList.add('language-selected')
+                this.language = 'pt' 
+                document.getElementById('en').classList.remove('language-selected')
+            }
         }
     },
     computed: {
@@ -88,18 +103,21 @@ export default{
        const hash = document.location.hash;
 
         switch(hash){
-            case "" || "#info" :
+            case "#info" :
                 this.navLinks[0].active = true;
                 
             break;
             case "#projects" :
                 this.navLinks[1].active = true;
+                //envia o click para chamar a função e posicionar o underline
                 document.getElementById('projects').click();
             break;
             case "#contact" :
                 this.navLinks[2].active = true;
                 document.getElementById('contact').click();
             break;
+            default :
+                this.navLinks[0].active = true;
         }
     }
 }
@@ -112,6 +130,11 @@ export default{
     }
     .header{
         display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: sticky;
+        width: 100%;
+        z-index: 10;
     }
 
     .header li{
@@ -136,5 +159,19 @@ export default{
         color: var(--action-color);
     }
 
-    
+    #language-switcher{
+        display: flex;
+    }    
+
+    .languague-option{
+        background-color:#3C0AA1;
+        border: none;
+        padding: .6em 1em;
+        font-size: 1.2em;
+        transition: all .3s;
+    }
+
+    .language-selected{
+        background-color:#5913FF;
+    }
 </style>
