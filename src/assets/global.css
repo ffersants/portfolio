@@ -1,29 +1,31 @@
-:root{
-    --bg-global: #01092A;
-    --action-color: #00FFBA;
+:root {
+	--bg-global: #01092a;
+	--action-color: #00ffba;
 }
 
-*{
-    font-family: Segoe UI;
+* {
+	font-family: Segoe UI;
 }
 
-ul{
-    list-style: none;
+ul {
+	list-style: none;
 }
 
-li{
-    display: inline
+li {
+	display: inline;
 }
 
-a{
-    text-decoration:none;
-    color: white;
+a {
+	text-decoration: none;
+	color: white;
 }
 
-button:focus{
-    outline:none;
+a:active,
+a:focus,
+button:focus {
+	outline: none;
 }
 
-button:hover{
-    cursor: pointer;
+button:hover {
+	cursor: pointer;
 }
