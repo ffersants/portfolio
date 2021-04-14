@@ -60,20 +60,20 @@ export default{
             }
         },
         changeLanguage(){
+            window.localStorage.getItem('language-choosed') === null && window.localStorage.setItem('language-choosed', 'pt')
             const languageInStorage = window.localStorage.getItem('language-choosed')
-
             if(languageInStorage === 'pt') {
                 document.getElementById('pt').classList.remove('language-selected')
                 window.localStorage.setItem('language-choosed', 'en')
+                document.getElementById('en').classList.add('language-selected')
                 
                 this.emitter.emit('LANGUAGE_CHANGED', 'en')
-                document.getElementById('en').classList.add('language-selected')
             } else{
                 document.getElementById('pt').classList.add('language-selected')
                 window.localStorage.setItem('language-choosed', 'pt')
+                document.getElementById('en').classList.remove('language-selected')
 
                 this.emitter.emit('LANGUAGE_CHANGED', 'pt')
-                document.getElementById('en').classList.remove('language-selected')
             }
             
             setInterval(() => {
