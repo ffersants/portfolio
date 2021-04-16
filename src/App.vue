@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header :languageSelected="language" />
+    <Header :languageSelected="languageChoosed" />
   </div>
 </template>
 
@@ -11,16 +11,14 @@ export default {
   name: 'App',
   data(){
     return{
-      language: 'pt'
+      languageChoosed: 'pt'
     }
   },
   components: {
     Header
   },
-  mounted(){
-    this.emitter.on('LANGUAGE_CHANGED', (languageToUse) => {
-      this.language = languageToUse;
-    })
+  beforeCreate(){
+    this.emitter.on('LANGUAGE_CHANGED', language => this.languageChoosed = language)
   }
 }
 </script>

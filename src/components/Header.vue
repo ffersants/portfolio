@@ -12,16 +12,18 @@
             </ul>
         </nav>
 
-        <div>
+       
             <div id="language-switcher">
                 <button @click="changeLanguage" id="pt" class="languague-option language-selected">PT</button>
                 <button @click="changeLanguage" id="en" class="languague-option">EN</button>
             </div>
-        </div>
+        
     </header>
 </template>
 
 <script>
+
+
 export default{
     name: 'Header',
     data(){
@@ -29,7 +31,6 @@ export default{
             underlineWidth: null,
             underlineLeft: null,
             underlineRight: null,
-            language: 'pt' 
         }
     },
     props: {
@@ -39,8 +40,7 @@ export default{
         }
     },
     methods: {
-        switchActiveLink({target}){
-            
+        switchActiveLink({target}){ 
             //underline position
             const {width, left, right} = target.getBoundingClientRect()
             
@@ -58,32 +58,33 @@ export default{
                     link.classList.remove('active-link')
                 }
             }
+            console.log('switchActiveLink')
         },
         changeLanguage(){
-            window.localStorage.getItem('language-choosed') === null && window.localStorage.setItem('language-choosed', 'pt')
-            const languageInStorage = window.localStorage.getItem('language-choosed')
-            if(languageInStorage === 'pt') {
-                document.getElementById('pt').classList.remove('language-selected')
-                window.localStorage.setItem('language-choosed', 'en')
-                document.getElementById('en').classList.add('language-selected')
-                
+            const pt = document.getElementById('pt')
+            const en = document.getElementById('en')
+            
+            if(this.languageSelected === 'pt') {
+                en.classList.add('language-selected')
                 this.emitter.emit('LANGUAGE_CHANGED', 'en')
+                
+                pt.classList.remove('language-selected')
+                
             } else{
-                document.getElementById('pt').classList.add('language-selected')
-                window.localStorage.setItem('language-choosed', 'pt')
-                document.getElementById('en').classList.remove('language-selected')
-
+                pt.classList.add('language-selected')
                 this.emitter.emit('LANGUAGE_CHANGED', 'pt')
+                
+                en.classList.remove('language-selected')
             }
             
-            setInterval(() => {
+            setTimeout(() => {
                 this.organizeUnderlinePosition()
             }, 300)
-
+            
         },
         organizeUnderlinePosition(){
             const hash = document.location.hash
-
+            console.log('organizeUnderlinePosition')
             switch(hash){
                 case "#info" :
                     document.getElementById('info').click();
@@ -130,9 +131,7 @@ export default{
                     id: 'contact',
                     href: '#contact',
                 }
-            ]
-                
-            
+            ]       
         }
     },
     mounted(){
@@ -189,16 +188,32 @@ export default{
         transition: all .3s;
         display: inline;
         color: white;
-    }
+        }
 
     .language-selected{
         background-color:#5913FF;
+        border: none;
     }
+
+    @media (max-width:388px){
+        .languague-option{
+            padding: 10%;
+        }
+
+        #language-switcher{
+            width: 100%;
+        }
+
+        nav{
+            border: 1px solid green;
+        }
+    }
+    
 
     @media (max-width: 576px){
         .header{
             font-size: .9rem;
-        }
+        }   
     }
 
      
