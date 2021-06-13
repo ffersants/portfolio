@@ -1,31 +1,40 @@
 :root {
-	--bg-global: #01092a;
-	--action-color: #00ffba;
+  --bg-global: #01092a;
+  --action-color: #00ffba;
 }
 
 * {
-	font-family: Segoe UI;
+  font-family: Segoe UI;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 ul {
-	list-style: none;
+  list-style: none;
 }
 
 li {
-	display: inline;
+  display: inline;
 }
 
 a {
-	text-decoration: none;
-	color: white;
+  text-decoration: none;
+  color: white;
 }
 
 a:active,
 a:focus,
 button:focus {
-	outline: none;
+  outline: none;
 }
 
 button:hover {
-	cursor: pointer;
+  cursor: pointer;
+}
+
+p,
+h1 {
+  color: white;
+  margin: 0;
 }

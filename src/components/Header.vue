@@ -64,15 +64,15 @@ export default{
             const pt = document.getElementById('pt')
             const en = document.getElementById('en')
             
-            if(this.languageSelected === 'pt') {
+            if(this.languageSelected === 'PT') {
                 en.classList.add('language-selected')
-                this.emitter.emit('LANGUAGE_CHANGED', 'en')
+                this.emitter.emit('LANGUAGE_CHANGED', 'EN')
                 
                 pt.classList.remove('language-selected')
                 
             } else{
                 pt.classList.add('language-selected')
-                this.emitter.emit('LANGUAGE_CHANGED', 'pt')
+                this.emitter.emit('LANGUAGE_CHANGED', 'PT')
                 
                 en.classList.remove('language-selected')
             }
@@ -122,12 +122,12 @@ export default{
                     id: 'info',
                 },
                 {
-                    text: this.languageSelected === 'pt' ? 'Projetos' : 'Projects',
+                    text: this.languageSelected === 'PT' ? 'Projetos' : 'Projects',
                     href: '#projects',
                     id: 'projects',
                 },
                 {
-                    text: this.languageSelected === 'pt' ? 'Contato' : 'Contact',
+                    text: this.languageSelected === 'PT' ? 'Contato' : 'Contact',
                     id: 'contact',
                     href: '#contact',
                 }
@@ -154,8 +154,9 @@ export default{
         align-items: center;
         position: sticky;
         z-index: 10;
-       
+        background-color: var(--bg-global);
         font-size: .8rem;
+        margin-bottom: 1em;
     }
 
     .header li{
@@ -188,11 +189,13 @@ export default{
         transition: all .3s;
         display: inline;
         color: white;
-        }
+        opacity: .4;
+    }
 
     .language-selected{
         background-color:#5913FF;
         border: none;
+        opacity: 1;
     }
 
     @media (max-width:388px){
