@@ -2,8 +2,8 @@
     <header class="header">
         <nav>
             <ul>
-                <li v-for="link of navLinks" :key="link.id" :id="link.id"  @click="switchActiveLink">
-                    <a :class="link.active && 'active-link'"  :href="link.href">
+                <li v-for="link of navLinks" :key="link.id"   >
+                    <a @click="switchActiveLink" class="nav-link" :id="link.id" :href="link.href">
                         {{link.text}}
                     </a>
                 </li> 
@@ -12,16 +12,18 @@
             </ul>
         </nav>
 
-        <div>
+       
             <div id="language-switcher">
                 <button @click="changeLanguage" id="pt" class="languague-option language-selected">PT</button>
                 <button @click="changeLanguage" id="en" class="languague-option">EN</button>
             </div>
-        </div>
+        
     </header>
 </template>
 
 <script>
+
+
 export default{
     name: 'Header',
     data(){
@@ -29,7 +31,6 @@ export default{
             underlineWidth: null,
             underlineLeft: null,
             underlineRight: null,
-            language: 'pt' 
         }
     },
     props: {
@@ -39,59 +40,64 @@ export default{
         }
     },
     methods: {
-        switchActiveLink({target}){
+        switchActiveLink({target}){ 
             //underline position
             const {width, left, right} = target.getBoundingClientRect()
             
             this.underlineWidth = width + 'px';
             this.underlineLeft = left + 'px';
             this.underlineRight = right + 'px';
+
             //list item 
-            this.navLinks.map(link => {
-                    if(link.text === target.innerText){
-                        link.active = true
-                    } else{
-                        link.active = false
-                    }
+           let navLinks = document.querySelectorAll(".nav-link")
+
+            for(let link of navLinks){
+                if(link.innerText === target.innerText){
+                    link.classList.add('active-link')
+                } else{
+                    link.classList.remove('active-link')
                 }
-            )
+            }
+            console.log('switchActiveLink')
         },
         changeLanguage(){
-            if(this.language === 'pt') {
-               document.getElementById('pt').classList.remove('language-selected')
-                this.language = 'en'
+            const pt = document.getElementById('pt')
+            const en = document.getElementById('en')
+            
+            if(this.languageSelected === 'pt') {
+                en.classList.add('language-selected')
                 this.emitter.emit('LANGUAGE_CHANGED', 'en')
-                document.getElementById('en').classList.add('language-selected')
+                
+                pt.classList.remove('language-selected')
+                
             } else{
-                document.getElementById('pt').classList.add('language-selected')
-                this.language = 'pt' 
+                pt.classList.add('language-selected')
                 this.emitter.emit('LANGUAGE_CHANGED', 'pt')
-                document.getElementById('en').classList.remove('language-selected')
+                
+                en.classList.remove('language-selected')
             }
-            this.organizeUnderlinePosition()
+            
+            setTimeout(() => {
+                this.organizeUnderlinePosition()
+            }, 300)
+            
         },
         organizeUnderlinePosition(){
-            const hash = document.location.hash;
-            console.log('chamado')
-            console.log(typeof this.navLinks[1].active)
+            const hash = document.location.hash
+            console.log('organizeUnderlinePosition')
             switch(hash){
                 case "#info" :
-                    this.navLinks[0].active == true;
                     document.getElementById('info').click();
                 break;
                 case "#projects" :
-                    this.navLinks[1].active == true;
                     //envia o click para chamar a função e posicionar o underline
                     document.getElementById('projects').click();
                 break;
                 case "#contact" :
-                    this.navLinks[2].active == true;
                     document.getElementById('contact').click();
                 break;
-                default :
-                    this.navLinks[0].active == true;
-                    console.log('padrao')
-                    document.getElementById('info').click();
+                // default :
+                //     document.getElementById('info').click();
             }
         }
     },
@@ -114,28 +120,24 @@ export default{
                     text: 'Info',
                     href: '#info',
                     id: 'info',
-                    active: false, 
                 },
                 {
                     text: this.languageSelected === 'pt' ? 'Projetos' : 'Projects',
                     href: '#projects',
                     id: 'projects',
-                    active: false,         
                 },
                 {
                     text: this.languageSelected === 'pt' ? 'Contato' : 'Contact',
                     id: 'contact',
                     href: '#contact',
-                    active: false,
                 }
-            ]
-                
-            
+            ]       
         }
     },
     mounted(){
         this.organizeUnderlinePosition()
         window.addEventListener('resize', this.organizeUnderlinePosition)
+        window.addEventListener('hashchange', this.organizeUnderlinePosition)
     }
 }
 </script>
@@ -186,16 +188,32 @@ export default{
         transition: all .3s;
         display: inline;
         color: white;
-    }
+        }
 
     .language-selected{
         background-color:#5913FF;
+        border: none;
     }
+
+    @media (max-width:388px){
+        .languague-option{
+            padding: 10%;
+        }
+
+        #language-switcher{
+            width: 100%;
+        }
+
+        nav{
+            border: 1px solid green;
+        }
+    }
+    
 
     @media (max-width: 576px){
         .header{
             font-size: .9rem;
-        }
+        }   
     }
 
      
