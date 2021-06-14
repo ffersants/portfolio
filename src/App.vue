@@ -1,6 +1,6 @@
 <template>
   <div class="appVue">
-    <Header :languageSelected="languageChoosed" />
+    <Header />
     <Index id="info"  />
   </div>
 </template>
@@ -15,15 +15,12 @@ export default {
   name: 'App',
   data(){
     return{
-      languageChoosed: 'PT'
+    
     }
   },
   components: {
     Header,
     Index
-  },
-  beforeCreate(){
-    this.emitter.on('LANGUAGE_CHANGED', language => this.languageChoosed = language)
   },
   mounted(){
     AOS.init()

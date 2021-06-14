@@ -1,4 +1,4 @@
-<template>
+<template data-aos="fade-down">
     <header class="header">
         <nav>
             <ul>
@@ -30,13 +30,8 @@ export default{
         return{
             underlineWidth: null,
             underlineLeft: null,
-            underlineRight: null,
-        }
-    },
-    props: {
-        languageSelected: {
-            type: String,
-            required: true
+            underlineRight: null,    
+            languageSelected: window.localStorage.getItem('languageSelected')    
         }
     },
     methods: {
@@ -47,7 +42,6 @@ export default{
             this.underlineWidth = width + 'px';
             this.underlineLeft = left + 'px';
             this.underlineRight = right + 'px';
-
             //list item 
            let navLinks = document.querySelectorAll(".nav-link")
 
@@ -58,24 +52,27 @@ export default{
                     link.classList.remove('active-link')
                 }
             }
-            console.log('switchActiveLink')
         },
         changeLanguage(){
             const pt = document.getElementById('pt')
             const en = document.getElementById('en')
-            
+
+            console.log(this.languageSelected)
             if(this.languageSelected === 'PT') {
                 en.classList.add('language-selected')
-                this.emitter.emit('LANGUAGE_CHANGED', 'EN')
+                window.localStorage.setItem("languageSelected", "EN")
+                this.languageSelected = "EN"
                 
                 pt.classList.remove('language-selected')
                 
             } else{
                 pt.classList.add('language-selected')
-                this.emitter.emit('LANGUAGE_CHANGED', 'PT')
-                
+                window.localStorage.setItem("languageSelected", "PT")
+                this.languageSelected = "PT"
                 en.classList.remove('language-selected')
             }
+
+            this.emitter.emit('Language changed')
             
             setTimeout(() => {
                 this.organizeUnderlinePosition()
@@ -99,7 +96,7 @@ export default{
                 // default :
                 //     document.getElementById('info').click();
             }
-        }
+        }   
     },
     computed: {
         underlineStyle(){
@@ -134,6 +131,9 @@ export default{
             ]       
         }
     },
+    beforeCreate(){
+        window.localStorage.setItem("languageSelected", "PT")
+    },
     mounted(){
         this.organizeUnderlinePosition()
         window.addEventListener('resize', this.organizeUnderlinePosition)
@@ -156,7 +156,7 @@ export default{
         z-index: 10;
         background-color: var(--bg-global);
         font-size: .8rem;
-        margin-bottom: 1em;
+        margin-bottom: 2em;
     }
 
     .header li{

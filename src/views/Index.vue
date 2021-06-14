@@ -1,5 +1,5 @@
 <template>
-    <section>
+    <section data-aos="zoom-in" >
         <div class="left">
                 <transition>
             <div class="holds-picture">
@@ -10,19 +10,31 @@
             <div class="bio"> 
                 <p class="name">Fernando Santos Ferreira</p>
 
-                <p class="description">Um carinha do suporte <br>
-                aspirante a desenvolvedor</p>
+                <p class="description">
+                    <pre class="text-center">{{languageSelected === 'PT' ? pt.bioDescription : en.bioDescription }}</pre>
+                </p>
+            </div>
+
+            <div class="social-links-div">
+                <a class="social-link" href="https://www.linkedin.com/in/fernando-ferreira-52319918b/">
+                    <img class="social-link-icon" src="../assets/linkedin-icon.png" alt="Link para o perfil no LinkedIn">
+                </a>
+                <a class="social-link  github" href="https://github.com/ffersants">
+                    <img class="social-link-icon" src="../assets/github-icon.png" alt="Link para o perfil no LinkedIn">
+                </a>
             </div>
         </div>
 
         <div class="right">
-            <p class="greeting">Olá,</p>
-            <p class="introduction">eu sou o Fernando!</p>
+            <p class="greeting">
+                {{languageSelected === 'PT' ? pt.greeting : en.greeting }}, 
+            </p>
+            <p class="introduction">
+                {{languageSelected === 'PT' ? pt.introduction : en.introduction }}
+            </p>
 
             <p class="description">
-                Cursando Análise e Desnvolvimento de Sistemas,
-                na Universidade Católica de Brasília, e preparando-se
-                para trabalhar com desenvolvimento de aplicações web.
+               {{languageSelected === 'PT' ? pt.description : en.description }}
             </p>
         </div>
     </section>
@@ -30,7 +42,33 @@
 
 <script>
 export default {
-    name: "Index"
+    name: "Index",
+    data(){
+        return {
+            languageSelected: window.localStorage.getItem("languageSelected"),
+            en: {
+                bioDescription: "A guy from techinal support\nthat wishes to become a front-end developer",
+                greeting: "Hi",
+                introduction: "my name is Fernando!",
+                description: `I'm studying Analyses and Development of Systems,
+                                in the Catholic University from Brasilia (UCB) and preparing myself
+                                to work developing web applications.`
+            },
+            pt: {
+                bioDescription: `Um carinha do suporte\naspirante a desenvolvedor front-end`,
+                greeting: "Olá",
+                introduction: "eu sou o Fernando!",
+                description: `Estou cursando Análise e Desnvolvimento de Sistemas,
+                                na Universidade Católica de Brasília (UCB) e preparando-me
+                                para trabalhar com desenvolvimento de aplicações web.`
+            }
+
+        }
+    },
+    beforeCreate(){
+        this.emitter.on("Language changed", () => this.languageSelected = window.localStorage.getItem("languageSelected"))
+    }
+    
 }
 </script>
 
@@ -57,6 +95,22 @@ export default {
 
     .left .name{
         font-size: 2em;
+    }
+
+    .left .social-links-div{
+        margin-top: 1em;
+        text-align: center;
+        border: 1px solid red;
+    }
+
+    .left .social-links-div .social-link-icon{
+        width: 30px;
+        margin-right: 15px;
+    }
+
+    .left .social-links-div .github{
+        width: 32px;
+        margin-left: 15px;
     }
 
     .right .greeting {
