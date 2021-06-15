@@ -93,8 +93,8 @@ export default{
                 case "#contact" :
                     document.getElementById('contact').click();
                 break;
-                // default :
-                //     document.getElementById('info').click();
+                default :
+                    document.getElementById('info').click();
             }
         }   
     },
@@ -182,7 +182,7 @@ export default{
     }
 
     .languague-option{
-        background-color:#3C0AA1;
+        background-color: var(--dark-blue);
         border: none;
         padding: .6em 1em;
         font-size: 1em;
@@ -193,7 +193,7 @@ export default{
     }
 
     .language-selected{
-        background-color:#5913FF;
+        background-color:var(--active-blue);
         border: none;
         opacity: 1;
     }

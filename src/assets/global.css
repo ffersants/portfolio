@@ -1,6 +1,8 @@
 :root {
   --bg-global: #01092a;
   --action-color: #00ffba;
+  --dark-blue: #3c0aa1;
+  --active-blue: #5913ff;
 }
 
 * {

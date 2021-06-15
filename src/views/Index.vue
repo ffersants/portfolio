@@ -36,8 +36,17 @@
             <p class="description">
                {{languageSelected === 'PT' ? pt.description : en.description }}
             </p>
-        </div>
+        </div>     
     </section>
+
+    <footer>
+
+        <div>
+            <font-awesome-icon class="down" rotation="180" size="4x" icon="sort-up" />
+        </div>
+
+    </footer>
+
 </template>
 
 <script>
@@ -100,7 +109,6 @@ export default {
     .left .social-links-div{
         margin-top: 1em;
         text-align: center;
-        border: 1px solid red;
     }
 
     .left .social-links-div .social-link-icon{
@@ -123,6 +131,32 @@ export default {
         font-weight: 400;
         margin-bottom: .7em;
         color: var(--action-color);
+    }
+
+    .down{
+        color: var(--action-color);
+    }
+
+    .down:hover{
+        cursor: pointer;
+    }
+
+    footer{
+        text-align: center;
+        margin-top: 3em;
+    }
+
+    footer div {
+        display: inline-block;
+        animation-name: jumping;
+        animation-duration: 4s;
+        animation-iteration-count: infinite;
+    }
+
+    @keyframes jumping {
+        0%   { transform: translateY(0); }
+        50%  { transform: translateY(-20px); }
+        100% { transform: translateY(0); }
     }
 
     @media (max-width: 767px){
