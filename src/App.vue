@@ -1,11 +1,10 @@
 <template>
-	<div class="container">
-		<Header />
-		<div class="content">
-			<Index id="info" />
-			<Projects id="projects" />
-		</div>
-	</div>
+
+	<Header />
+
+	<Index id="info" />
+	<Projects id="projects" />
+	
 </template>
 
 <script>
@@ -41,15 +40,7 @@ html,
 	background-color: var(--bg-global);
 	width: 100vw;
 	height: 100vh;
-}
-
-
-.content{
-	border: 1px solid yellow;
-	padding-top: 80px;
-	display: flex;
-	flex-direction:column;
-	justify-content:center;
+	overflow: hidden;
 }
 
 @media (max-width: 768px) {

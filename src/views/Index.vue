@@ -1,50 +1,51 @@
 <template>
+    <div class="container index">
+        <section data-aos="zoom-in" >
+            <div class="left">
+                    <transition>
+                <div class="holds-picture">
+                        <img src="../assets/ey.jpg" alt="">
+                </div>
+                    </transition>
     
-    <section data-aos="zoom-in" >
-        <div class="left">
-                <transition>
-            <div class="holds-picture">
-                    <img src="../assets/ey.jpg" alt="">
+                <div class="bio"> 
+                    <p class="name">Fernando Santos Ferreira</p>
+
+                    <p class="description">
+                        <pre class="text-center">{{languageSelected === 'PT' ? pt.bioDescription : en.bioDescription }}</pre>
+                    </p>
+                </div>
+
+                <div class="social-links-div">
+                    <a class="social-link" href="https://www.linkedin.com/in/fernando-ferreira-52319918b/">
+                        <img class="social-link-icon" src="../assets/linkedin-icon.png" alt="Link para o perfil no LinkedIn">
+                    </a>
+                    <a class="social-link  github" href="https://github.com/ffersants">
+                        <img class="social-link-icon" src="../assets/github-icon.png" alt="Link para o perfil no LinkedIn">
+                    </a>
+                </div>
             </div>
-                </transition>
- 
-            <div class="bio"> 
-                <p class="name">Fernando Santos Ferreira</p>
+
+            <div class="right">
+                <p class="greeting">
+                    {{languageSelected === 'PT' ? pt.greeting : en.greeting }}, 
+                </p>
+                <p class="introduction">
+                    {{languageSelected === 'PT' ? pt.introduction : en.introduction }}
+                </p>
 
                 <p class="description">
-                    <pre class="text-center">{{languageSelected === 'PT' ? pt.bioDescription : en.bioDescription }}</pre>
+                {{languageSelected === 'PT' ? pt.description : en.description }}
                 </p>
-            </div>
+            </div>   
+        </section>
 
-            <div class="social-links-div">
-                <a class="social-link" href="https://www.linkedin.com/in/fernando-ferreira-52319918b/">
-                    <img class="social-link-icon" src="../assets/linkedin-icon.png" alt="Link para o perfil no LinkedIn">
-                </a>
-                <a class="social-link  github" href="https://github.com/ffersants">
-                    <img class="social-link-icon" src="../assets/github-icon.png" alt="Link para o perfil no LinkedIn">
-                </a>
-            </div>
-        </div>
-
-        <div class="right">
-            <p class="greeting">
-                {{languageSelected === 'PT' ? pt.greeting : en.greeting }}, 
-            </p>
-            <p class="introduction">
-                {{languageSelected === 'PT' ? pt.introduction : en.introduction }}
-            </p>
-
-            <p class="description">
-               {{languageSelected === 'PT' ? pt.description : en.description }}
-            </p>
-        </div>  
-    </section>
-
-    <footer>
-        <div>
-            <font-awesome-icon class="down" rotation="180" size="4x" icon="sort-up" />
-        </div>
-    </footer>   
+        <footer>
+            <i>
+                <font-awesome-icon class="down" rotation="180" size="4x" icon="sort-up" />
+            </i>   
+        </footer> 
+    </div>  
 </template>
 
 <script>
@@ -80,8 +81,12 @@ export default {
 </script>
 
 <style scoped>
-    
-
+    .index{
+        display: flex;
+        justify-content: space-around;
+        flex-direction: column;
+        /* justify-content: center; */
+    }
     section {
         display: flex;
     }
@@ -143,10 +148,10 @@ export default {
 
     footer{
         text-align: center;
-        
-    }
+        /* width: 100%; */
+    }   
 
-    footer div {
+    footer i {
         display: inline-block;
         animation-name: jumping;
         animation-duration: 4s;
