@@ -84,6 +84,8 @@ export default {
 <style scoped>
     section {
         display: flex;
+        border: 1px solid red;
+        height: 60%;
     }
     .left, .right {
         width: 100%;
