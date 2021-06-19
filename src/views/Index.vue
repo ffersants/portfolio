@@ -1,4 +1,5 @@
 <template>
+    
     <section data-aos="zoom-in" >
         <div class="left">
                 <transition>
@@ -36,17 +37,14 @@
             <p class="description">
                {{languageSelected === 'PT' ? pt.description : en.description }}
             </p>
-        </div>     
+        </div>  
     </section>
 
     <footer>
-
         <div>
             <font-awesome-icon class="down" rotation="180" size="4x" icon="sort-up" />
         </div>
-
-    </footer>
-
+    </footer>   
 </template>
 
 <script>
@@ -82,10 +80,10 @@ export default {
 </script>
 
 <style scoped>
+    
+
     section {
         display: flex;
-        border: 1px solid red;
-        height: 60%;
     }
     .left, .right {
         width: 100%;
@@ -145,7 +143,7 @@ export default {
 
     footer{
         text-align: center;
-        margin-top: 3em;
+        
     }
 
     footer div {

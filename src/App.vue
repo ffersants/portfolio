@@ -1,11 +1,17 @@
 <template>
-	<Header />
-	<Index id="info" />
+	<div class="container">
+		<Header />
+		<div class="content">
+			<Index id="info" />
+			<Projects id="projects" />
+		</div>
+	</div>
 </template>
 
 <script>
 import Header from "./components/Header";
 import Index from "./views/Index.vue";
+import Projects from "./views/Projects.vue";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
@@ -17,6 +23,7 @@ export default {
 	components: {
 		Header,
 		Index,
+		Projects
 	},
 	mounted() {
 		AOS.init();
@@ -28,13 +35,21 @@ export default {
 body,
 html,
 #app {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
 	background-color: var(--bg-global);
-	width: 100%;
+	width: 100vw;
 	height: 100vh;
 }
 
-.appVue {
-	height: 100vh;
+
+.content{
+	border: 1px solid yellow;
+	padding-top: 80px;
+	display: flex;
+	flex-direction:column;
+	justify-content:center;
 }
 
 @media (max-width: 768px) {

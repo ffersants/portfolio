@@ -1,4 +1,4 @@
-<template data-aos="fade-down">
+<template>
 	<header class="header">
 		<nav>
 			<ul>
@@ -158,12 +158,16 @@ export default {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	position: sticky;
+	/* position: sticky; */
+	position: fixed;
 	z-index: 10;
 	background-color: var(--bg-global);
 	font-size: 0.8rem;
 	margin-bottom: 2em;
-	height: 100px;
+	height: 80px;
+	margin-bottom: 80px;
+	width: 100%;
+	padding: 0 50px 0 20px;
 }
 
 .header li {
