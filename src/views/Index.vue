@@ -1,13 +1,19 @@
 <template>
-    <div class="container index">
+    <section id="info" class="container index">
         <section data-aos="zoom-in" >
             <div class="left">
-                    <transition>
+                <p class="greeting">
+                    {{languageSelected === 'PT' ? pt.greeting : en.greeting }}, 
+                </p>   
+
+                <p class="introduction">
+                    {{languageSelected === 'PT' ? pt.introduction : en.introduction }}
+                </p>
+                
                 <div class="holds-picture">
                         <img src="../assets/ey.jpg" alt="">
                 </div>
-                    </transition>
-    
+                   
                 <div class="bio"> 
                     <p class="name">Fernando Santos Ferreira</p>
 
@@ -45,7 +51,7 @@
                 <font-awesome-icon class="down" rotation="180" size="4x" icon="sort-up" />
             </i>   
         </footer> 
-    </div>  
+    </section>  
 </template>
 
 <script>
@@ -85,7 +91,6 @@ export default {
         display: flex;
         justify-content: space-around;
         flex-direction: column;
-        /* justify-content: center; */
     }
     section {
         display: flex;
@@ -105,6 +110,14 @@ export default {
     .left .holds-picture img{
         clip-path: circle(50.2% at 50% 50%);
         width: 180px;
+    }
+
+    .left .greeting{
+        display: none;
+    }
+
+    .left .introduction{
+        display: none;
     }
 
     .left .name{
@@ -164,17 +177,47 @@ export default {
         100% { transform: translateY(0); }
     }
 
-    @media (max-width: 767px){
+    @media (max-width: 767px){        
+        .index{
+            justify-content: space-around;
+        }
+
         section {
             font-size: 11px;
             flex-direction: column;
         }
-        .right{
-            text-align:center;
-            margin-top: 1rem;
-        }
+
         .left .holds-picture img{
             width: 120px;
+        }
+
+        .left .greeting{
+            display:block;
+            margin-top: 0.5em;
+            font-size: 3.5em;
+            color: var(--action-color);
+        }
+
+        .left .introduction{
+            display:block;
+            font-size: 2.5em;
+            font-weight: 400;
+            margin-bottom: .7em;
+            color: var(--action-color);
+        }
+
+        .right{
+            text-align:center;
+            margin-top: 3em;
+        }
+
+        .right .greeting,
+        .right .introduction{
+            display:none;
+        }    
+        
+        footer{
+            margin-bottom: 3em;
         }
     }
 
@@ -183,8 +226,29 @@ export default {
             font-size: 12px;
             flex-direction: column;
         }
+
+        .left .greeting{
+            display:block;
+            font-size: 3.5em;
+            color: var(--action-color);
+        }
+
+        .left .introduction{
+            display:block;
+            font-size: 2.5em;
+            font-weight: 400;
+            margin-bottom: .7em;
+            color: var(--action-color);
+        }
+
         .right{
             text-align:center;
         }
+
+         .right .greeting,
+        .right .introduction{
+            display:none;
+        }    
+        
     }
 </style>

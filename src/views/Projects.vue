@@ -1,7 +1,16 @@
 <template>
-    <div >
-        
-    </div>
+    <section  id="projects" class="container">
+        <section>
+            <header>
+                <p class="projectTitle">
+                    Spotify Clone
+                </p>
+                <p class="projectTecnologies">
+                    HTML | CSS | BOOTSTRAP
+                </p>
+            </header>
+        </section>
+    </section>
 </template>
 
 <script>
@@ -11,18 +20,24 @@ export default {
 </script>
 
 <style scoped>
-    section{
-        width: 100%;
-        /* height: 100%; */
+    section {
+        text-align: center;
     }
 
     .projectTitle{
-        font-size: 2.5em;
+        font-size: 4em;
         font-weight: bolder;
         color: var(--ice-white);
     }
     .projectTecnologies{
+        margin-top: 1em;
         font-size: 1em;
         color: #06A6CF;
+    }
+
+    @media (max-width: 767px) {
+        .projectTitle{
+            font-size: 3em;
+        }
     }
 </style>

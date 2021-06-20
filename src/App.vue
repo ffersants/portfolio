@@ -2,8 +2,8 @@
 
 	<Header />
 
-	<Index id="info" />
-	<Projects id="projects" />
+	<Index />
+	<Projects />
 	
 </template>
 
@@ -38,9 +38,14 @@ html,
 	margin: 0;
 	box-sizing: border-box;
 	background-color: var(--bg-global);
-	width: 100vw;
+	width: 100%;
 	height: 100vh;
-	overflow: hidden;
+}
+
+#app{
+	overflow-y: scroll;
+    scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
 }
 
 @media (max-width: 768px) {

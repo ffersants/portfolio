@@ -217,15 +217,11 @@ export default {
 	#language-switcher {
 		width: 100%;
 	}
-
-	nav {
-		border: 1px solid green;
-	}
 }
 
 @media (max-width: 576px) {
 	.header {
-		font-size: 0.9rem;
+		font-size: 0.8rem;
 	}
 }
 
