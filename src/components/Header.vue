@@ -44,6 +44,8 @@ export default {
 	},
 	methods: {
 		switchActiveLink({ target }) {
+			this.scrollViewport(target.id)
+
 			//underline position
 			const { width, left, right } = target.getBoundingClientRect();
 
@@ -60,6 +62,11 @@ export default {
 					link.classList.remove("active-link");
 				}
 			}
+		},
+		scrollViewport(selector){
+			console.log(selector)
+			const el = document.querySelector("#"+selector).scrollIntoView({behavior: 'smooth'})
+			console.log(el)
 		},
 		changeLanguage() {
 			const pt = document.getElementById("pt");
