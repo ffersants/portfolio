@@ -23,10 +23,10 @@
                 </div>
 
                 <div class="social-links-div">
-                    <a class="social-link" href="https://www.linkedin.com/in/fernando-ferreira-52319918b/">
+                    <a class="social-link" target="_blank" href="https://www.linkedin.com/in/fernando-ferreira-52319918b/">
                         <img class="social-link-icon" src="../assets/linkedin-icon.png" alt="Link para o perfil no LinkedIn">
                     </a>
-                    <a class="social-link  github" href="https://github.com/ffersants">
+                    <a class="social-link github" target="_blank" href="https://github.com/ffersants">
                         <img class="social-link-icon" src="../assets/github-icon.png" alt="Link para o perfil no LinkedIn">
                     </a>
                 </div>
